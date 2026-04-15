@@ -1,6 +1,12 @@
+# 真实配置文件（含敏感信息）
+config.yaml
+
 # Session 文件（包含登录凭证，绝对不能泄露！）
 *.session
 *.session-journal
+
+# session 数据目录
+session_data/
 
 # 下载的视频文件
 downloads/

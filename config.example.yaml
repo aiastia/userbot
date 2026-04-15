@@ -1,0 +1,49 @@
+# Telegram Userbot 配置文件示例
+# 复制此文件为 config.yaml 并填写你的信息
+# cp config.example.yaml config.yaml
+# ==========================================
+
+# Telegram API 凭证 (从 https://my.telegram.org 获取)
+telegram:
+  api_id: 12345678  # 替换为你的 api_id
+  api_hash: "your_api_hash_here"  # 替换为你的 api_hash
+  phone_number: "+86xxxxxxxxx"  # 你的手机号（带国际区号）
+  session_name: "userbot_session"  # session 文件名
+
+# 功能1: 视频监控与转发
+video_monitor:
+  enabled: true
+  watch_chats:
+    - "all"  # 监控所有聊天，或指定如: -1001234567890 或 "channel_username"
+  exclude_chats: []
+  min_duration: 60  # 最小时长（秒），超过才转发
+  min_size_mb: 10  # 最小大小（MB），超过才转发
+  forward_to: "your_target_chat"  # 转发目标聊天
+  download_enabled: false  # 是否同时下载到本地（默认否）
+  download_dir: "./downloads"  # 下载目录
+  include_documents: true  # 是否处理以文档形式发送的视频
+
+# 功能2: 关键词转发
+keyword_forward:
+  enabled: true
+  watch_chats:
+    - "all"
+  exclude_chats: []
+  keywords:
+    - "紧急"
+    - "重要"
+    - "通知"
+    - "urgent"
+    - "important"
+  forward_to: "your_bot_username"  # 转发目标机器人
+  rate_limit:
+    max_per_minute: 5
+    max_per_hour: 30
+    min_interval: 3
+  forward_media: true
+  include_source_info: true
+
+# 日志设置
+logging:
+  level: "INFO"
+  log_file: "./logs/userbot.log"

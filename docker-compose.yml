@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  userbot:
+    build: .
+    image: telegram-userbot:latest
+    container_name: telegram-userbot
+    restart: unless-stopped
+    volumes:
+      # 配置文件（必须挂载）
+      - ./config.yaml:/app/config.yaml:ro
+      # session 文件持久化（登录凭证）
+      - ./session_data:/app
+      # 下载目录（如果启用了下载）
+      - ./downloads:/app/downloads
+      # 日志目录
+      - ./logs:/app/logs
+    environment:
+      - TZ=Asia/Shanghai
+    # 交互模式，首次需要输入验证码
+    stdin_open: true
+    tty: true
