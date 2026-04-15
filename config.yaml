@@ -1,0 +1,64 @@
+# Telegram Userbot 配置文件
+# ==========================================
+
+# Telegram API 凭证 (从 https://my.telegram.org 获取)
+telegram:
+  api_id: 12345678  # 替换为你的 api_id
+  api_hash: "your_api_hash_here"  # 替换为你的 api_hash
+  phone_number: "+86xxxxxxxxx"  # 你的手机号（带国际区号）
+  session_name: "userbot_session"  # session 文件名
+
+# 功能1: 视频监控与转发
+video_monitor:
+  enabled: true
+  # 要监控的聊天（群组/频道/用户），可以是用户名、ID或"all"表示所有聊天
+  watch_chats:
+    - "all"  # 监控所有聊天，或指定如: -1001234567890 或 "channel_username"
+  # 排除的聊天（不想监控的）
+  exclude_chats: []
+  # 视频时长阈值（秒），超过此时长才转发
+  min_duration: 60  # 最小60秒
+  # 视频大小阈值（MB），超过此大小才转发
+  min_size_mb: 10  # 最小10MB
+  # 转发目标聊天（用户名或ID，如: "channel_username" 或 -1001234567890）
+  forward_to: "your_target_chat"  # 替换为要转发到的聊天
+  # 是否同时下载到本地（默认否）
+  download_enabled: false
+  # 下载目录（仅当 download_enabled 为 true 时生效）
+  download_dir: "./downloads"
+  # 是否同时处理文档类视频（以文件形式发送的视频）
+  include_documents: true
+
+# 功能2: 关键词转发
+keyword_forward:
+  enabled: true
+  # 要监控的聊天
+  watch_chats:
+    - "all"
+  exclude_chats: []
+  # 关键词列表（不区分大小写）
+  keywords:
+    - "紧急"
+    - "重要"
+    - "通知"
+    - "urgent"
+    - "important"
+  # 转发目标（机器人用户名或ID）
+  forward_to: "your_bot_username"  # 替换为目标机器人用户名或ID
+  # 限速设置
+  rate_limit:
+    # 每分钟最大转发次数
+    max_per_minute: 5
+    # 每小时最大转发次数
+    max_per_hour: 30
+    # 两次转发之间最小间隔（秒）
+    min_interval: 3
+  # 是否转发媒体文件
+  forward_media: true
+  # 是否在转发时附加原文信息
+  include_source_info: true
+
+# 日志设置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: "./logs/userbot.log"
